@@ -52,4 +52,6 @@ background-blur = true
 copy-on-select = true
 clipboard-trim-trailing-spaces = true
 
+# For mac
+# shell-integration-features = sudo
 

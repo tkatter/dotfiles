@@ -3,8 +3,13 @@
   email = 
 
 [alias]
+	last = log -1 HEAD
+	oneline = log --pretty=oneline
   st = status
   co = checkout
   ci = commit
   br = branch
   a = add
+
+[init]
+	defaultBranch = main
