@@ -1,0 +1,10 @@
+[user]
+  name = 
+  email = 
+
+[alias]
+  st = status
+  co = checkout
+  ci = commit
+  br = branch
+  a = add
