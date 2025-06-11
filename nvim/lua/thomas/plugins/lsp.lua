@@ -1,0 +1,30 @@
+return {
+  "mason-org/mason-lspconfig.nvim",
+  depenendencies = {
+    { "mason-org/mason.nvim", opts = {} },
+    "neovim/nvim-lspconfig",
+  },
+  opts = {
+    ensure_installed = {
+      "bashls",
+      "cssls",
+      "cssmodules_ls",
+      "css_variables",
+      "docker_compose_language_service",
+      "dockerls",
+      "emmet_language_server",
+      "emmet_ls",
+      "eslint",
+      "html",
+      "jsonls",
+      "lua_ls",
+      "marksman",
+      "pyright",
+      "rust_analyzer",
+      "tailwindcss",
+      "ts_ls",
+      -- "tsserver",
+      "yamlls",
+    },
+  },
+}
