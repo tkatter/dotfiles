@@ -11,3 +11,4 @@
 ## npm
 - corepack (0.32.0)
 - npm (11.3.0)
+- opencode-ai (0.1.48)
