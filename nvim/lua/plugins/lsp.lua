@@ -225,6 +225,7 @@ return {
                 ts_ls = {},
                 eslint = {},
                 bashls = {},
+                jsonls = {},
                 html = {},
                 marksman = {},
                 superhtml = {},

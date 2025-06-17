@@ -194,12 +194,13 @@ return {
                     set_mark('p', '/home/thomas/Code/Projects', 'Home directory')
                 end,
             })
-            vim.api.nvim_create_autocmd('User', {
-                pattern = 'MiniFilesActionRename',
-                callback = function(event)
-                    require('snacks.nvim').rename.on_rename_file(event.data.from, event.data.to)
-                end,
-            })
+            -- vim.api.nvim_create_autocmd('User', {
+            --     pattern = 'MiniFilesActionRename',
+            --     callback = function(event)
+            --         require('snacks.nvim').rename.on_rename_file(event.data.from, event.data.to)
+            --     end,
+            -- })
+
             -- -- HACK: Notify LSPs that a file got renamed.
             -- -- Borrowed this from snacks.nvim.
             -- vim.api.nvim_create_autocmd('User', {

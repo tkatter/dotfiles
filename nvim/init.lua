@@ -25,10 +25,8 @@ require 'settings'
 require 'keymaps'
 require 'commands'
 require 'autocmds'
--- require 'statusline'
 require 'winbar'
 require 'marks'
--- require 'lsp'
 
 require('lazy').setup(plugins, {
     ui = { border = 'rounded' },
