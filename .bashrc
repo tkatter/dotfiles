@@ -140,7 +140,12 @@ esac
 # Oh-My-Posh
 # Path
 export PATH=$PATH:/home/thomas/.local/bin
+
 neofetch
+
+# FZF
+eval "$(fzf --bash)"
+
 # eval "$(oh-my-posh init bash)"
 eval "$(oh-my-posh init bash --config /home/thomas/.cache/oh-my-posh/themes/catppuccin_mocha.omp.json)"
 . "$HOME/.cargo/env"

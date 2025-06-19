@@ -13,3 +13,7 @@ alias nv='nvim'
 
 # Lazygit
 alias lg='lazygit'
+
+# tmux
+alias ntm='tmux new-session -s '
+alias ktm='tmux kill-server'
