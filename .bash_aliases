@@ -17,3 +17,14 @@ alias lg='lazygit'
 # tmux
 alias ntm='tmux new-session -s '
 alias ktm='tmux kill-server'
+alias tm='tmux'
+alias tma='tmux attach -t '
+
+# git
+alias g='git '
+alias gbr='git br'
+alias gci='git ci'
+alias gco='git co'
+alias ga='git add'
+alias gsw='git sw'
+alias gst='git st'
