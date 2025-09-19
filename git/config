@@ -1,15 +1,25 @@
 [user]
-  name = 
-  email = 
+  name = Thomas Katter
+  email = tjkatter@gmail.com
+  # signingkey = <GPG_KEY>
 
 [alias]
-	last = log -1 HEAD
-	oneline = log --pretty=oneline
+  last = log -1 HEAD
+  oneline = log --pretty=oneline
   st = status
   co = checkout
   ci = commit
   br = branch
   a = add
-
+  sw = switch
+  d = diff
+  df = diff
 [init]
-	defaultBranch = main
+  defaultBranch = main
+[commit]
+  gpgsign = true
+  template = /home/thomas/.config/git/gitmessage.txt
+[tag]
+  gpgsign = true
+[push]
+  autosetupremote = true

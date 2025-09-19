@@ -1,6 +1,7 @@
 # ls
 alias ll='ls -l'
 alias la='ls -al'
+alias l='ls -1'
 
 # batcat
 alias cat='bat'

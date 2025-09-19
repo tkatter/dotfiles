@@ -8,6 +8,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_PICTURES_DIR="$HOME/Pictures"
 export XDG_STATE_HOME="$HOME/.local/state"
+export EDITOR="$(which nvim)"
 
 # If not running interactively, don't do anything
 case $- in
@@ -148,4 +149,20 @@ eval "$(fzf --bash)"
 
 # eval "$(oh-my-posh init bash)"
 eval "$(oh-my-posh init bash --config /home/thomas/.cache/oh-my-posh/themes/catppuccin_mocha.omp.json)"
+
+# Cargo
 . "$HOME/.cargo/env"
+
+# asdf
+. <(asdf completion bash)
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# Wrapper for Yazi
+# Enables changing the CWD when exiting
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
+}

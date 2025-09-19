@@ -3,17 +3,9 @@
   "palette": {
     "os": "#ACB0BE",
     "closer": "p:os",
-    "pink": "#F5BDE6",
-    "lavender": "#B7BDF8",
-    "blue": "#8AADF4"
-  },
-  "maps": {
-    "host_name": {
-      "pivpn-mac.local.tksnetwork.com": "pivpn"
-    },
-    "user_name": {
-      "thomaskatter": "tk"
-    }
+    "pink": "#F5C2E7",
+    "lavender": "#B4BEFE",
+    "blue": "#89B4FA"
   },
   "blocks": [
     {
@@ -28,7 +20,7 @@
         {
           "foreground": "p:blue",
           "style": "plain",
-          "template": "{{ .UserName }}@{{ .HostName }} ",
+          "template": "{{ .UserName }} ",
           "type": "session"
         },
         {
@@ -67,8 +59,7 @@
           "type": "text"
         }
       ],
-      "type": "prompt",
-      "newline": true
+      "type": "prompt"
     }
   ],
   "final_space": true,
