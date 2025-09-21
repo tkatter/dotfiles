@@ -4,7 +4,7 @@ alias la='ls -al'
 alias l='ls -1'
 
 # batcat
-alias cat='bat'
+# alias cat='bat'
 
 # Directory
 alias mcd='mkdir'
