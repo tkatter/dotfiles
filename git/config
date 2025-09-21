@@ -17,9 +17,9 @@
 [init]
   defaultBranch = main
 [commit]
-  gpgsign = true
-  template = /home/thomas/.config/git/gitmessage.txt
+  # gpgsign = true
+  template = $HOME/.config/git/gitmessage.txt
 [tag]
-  gpgsign = true
+  # gpgsign = true
 [push]
   autosetupremote = true
