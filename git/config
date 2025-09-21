@@ -18,7 +18,7 @@
   defaultBranch = main
 [commit]
   # gpgsign = true
-  template = $HOME/.config/git/gitmessage.txt
+  template = ~/.config/git/gitmessage.txt
 [tag]
   # gpgsign = true
 [push]
