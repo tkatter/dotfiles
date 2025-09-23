@@ -127,24 +127,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-## fnm
-# FNM_PATH="/home/thomas/.local/share/fnm"
-# if [ -d "$FNM_PATH" ]; then
-#   export PATH="$FNM_PATH:$PATH"
-#   eval "$(fnm env)"
-# fi
-
-## pnpm
-# export PNPM_HOME="/home/thomas/.local/share/pnpm"
-# case ":$PATH:" in
-# *":$PNPM_HOME:"*) ;;
-# *) export PATH="$PNPM_HOME:$PATH" ;;
-# esac
-## pnpm end
-
 ## Oh-My-Posh
-# export PATH=$PATH:/home/thomas/.local/bin
-# eval "$(oh-my-posh init bash)"
+## eval "$(oh-my-posh init bash)"
 # eval "$(oh-my-posh init bash --config /home/thomas/.cache/oh-my-posh/themes/catppuccin_mocha.omp.json)"
 
 neofetch
