@@ -136,10 +136,14 @@ if command -v "oh-my-posh" &>/dev/null; then
 fi
 
 ## Fzf - fuzzy finder (nvim and yazi)
-# eval "$(fzf --bash)"
+if command -v "fzf" &>/dev/null; then
+  eval "$(fzf --bash)"
+fi
 
 ## Cargo - rust
-# . "$HOME/.cargo/env"
+if [ -d "$HOME/.cargo" ]; then
+  . "$HOME/.cargo/env"
+fi
 
 ## Asdf - elixir installer (like node's fnm/nvm)
 # . <(asdf completion bash)
