@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# XDG Base Directories
+## XDG Base Directories
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -10,17 +10,21 @@ export XDG_PICTURES_DIR="$HOME/Pictures"
 export XDG_STATE_HOME="$HOME/.local/state"
 
 ## Export EDITOR env variable
-if command -v "nvim" &> /dev/null; then
+if command -v "nvim" &>/dev/null; then
   export EDITOR="$(command -v nvim)"
-elif command -v "vim" &> /dev/null; then
+elif command -v "vim" &>/dev/null; then
   export EDITOR="$(command -v vim)"
 else
   export EDITOR="nano" # last resort
 fi
 
-## Export `$HOME/.local/bin` to PATH
-if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-  export PATH="$HOME/.local/bin:$PATH"
+## Export `$HOME/.local/bin`
+LOCAL_BIN="$HOME/.local/bin"
+if [ -d "$LOCAL_BIN" ]; then
+  case ":$PATH:" in
+  *":$LOCAL_BIN:"*) : ;; # already in PATH, do nothing
+  *) export PATH="$LOCAL_BIN:$PATH" ;;
+  esac
 fi
 
 ## If not running interactively, don't do anything
@@ -29,48 +33,46 @@ case $- in
 *) return ;;
 esac
 
-## don't put duplicate lines or lines starting with space in the history.
+## Don't put duplicate lines or lines starting with space in the history.
 ## See bash(1) for more options
 HISTCONTROL=ignoreboth
 
-## append to the history file, don't overwrite it
+## Append to the history file, don't overwrite it
 shopt -s histappend
 
-## for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+## For setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-## check the window size after each command and, if necessary,
+## Check the window size after each command and, if necessary,
 ## update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
 ## If set, the pattern "**" used in a pathname expansion context will
 ## match all files and zero or more directories and subdirectories.
-# shopt -s globstar
+shopt -s globstar
 
-## make less more friendly for non-text input files, see lesspipe(1)
+## Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-## set variable identifying the chroot you work in (used in the prompt below)
+## Set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
   debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-## set a fancy prompt (non-color, unless we know we "want" color)
+## Set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
 xterm-color | *-256color) color_prompt=yes ;;
 esac
 
-## uncomment for a colored prompt, if the terminal has the capability; turned
-## off by default to not distract the user: the focus in a terminal window
-## should be on the output of commands, not on the prompt
-# force_color_prompt=yes
+## We want color baby
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
   if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
+    ## We have color support; assume it's compliant with Ecma-48
+    ## (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    ## a case would tend to support setf rather than setaf.)
     color_prompt=yes
   else
     color_prompt=
@@ -88,10 +90,9 @@ else
 fi
 unset color_prompt force_color_prompt
 
-## If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm* | rxvt*)
-  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  PS1='\[\033[00;38;5;147m\](\h)\[\033[00m\]\[\033[01;38;5;219m\]\u\[\033[00m\] \[\033[02;38;5;105m\]\w\[\033[00m\] \[\033[01;38;5;219m\]\$\[\033[00m\] '
   ;;
 *) ;;
 esac
@@ -100,22 +101,19 @@ esac
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
-  #alias dir='dir --color=auto'
-  #alias vdir='vdir --color=auto'
-
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
 fi
 
 ## colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+# export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 ## Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
+##   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-## Alias definitions.
+## Source .bash_aliases
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
@@ -131,28 +129,40 @@ if ! shopt -oq posix; then
   fi
 fi
 
-## Oh-My-Posh
+## Oh-My-Posh - fancy prompt
 ## eval "$(oh-my-posh init bash)"
-# eval "$(oh-my-posh init bash --config /home/thomas/.cache/oh-my-posh/themes/catppuccin_mocha.omp.json)"
+if command -v "oh-my-posh" &>/dev/null; then
+  eval "$(oh-my-posh init bash --config $HOME/.cache/oh-my-posh/themes/catppuccin_mocha.omp.json)"
+fi
 
-neofetch
-
-## FZF
+## Fzf - fuzzy finder (nvim and yazi)
 # eval "$(fzf --bash)"
 
-## Cargo
+## Cargo - rust
 # . "$HOME/.cargo/env"
 
-## asdf
+## Asdf - elixir installer (like node's fnm/nvm)
 # . <(asdf completion bash)
-# export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# ASDF_PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
+# if [ -d "$FNM_PATH" ]; then
+#   case ":$PATH:" in
+#   *":$ASDF_PATH:"*) : ;; # already in PATH, do nothing
+#   *) export PATH="$ASDF_PATH:$PATH" ;;
+#   esac
+# fi
 
-## Wrapper for Yazi
-## Enables changing the CWD when exiting
-# function y() {
-#   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-#   yazi "$@" --cwd-file="$tmp"
-#   IFS= read -r -d '' cwd <"$tmp"
-#   [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-#   rm -f -- "$tmp"
-# }
+## Yazi - enables changing the CWD when exiting
+if command -v "yazi" &>/dev/null; then
+  function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd <"$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+  }
+fi
+
+# Runnit
+if command -v "neofetch" &>/dev/null; then
+  neofetch
+fi
