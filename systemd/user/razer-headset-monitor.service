@@ -1,0 +1,15 @@
+[Unit]
+Description=Razer Headset Audio Monitor
+After=pulseaudio.service
+Wants=pulseaudio.service
+
+[Service]
+Type=simple
+ExecStart=/home/thomas/.config/razer-headset-monitor.sh
+Restart=always
+RestartSec=5
+Environment=HOME=%h
+Environment=XDG_RUNTIME_DIR=%t
+
+[Install]
+WantedBy=default.target

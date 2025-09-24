@@ -1,0 +1,28 @@
+[global]
+monitor = 4
+width = (0, 300)
+height = 75
+notification_limit = 5
+origin = top-right
+transparency = 20
+font = "FiraCode Nerd Font Mono 8"
+corner_radius = 8
+# enable_recursive_icon_lookup = true
+# icon_theme = "Yaru","Yaru-dark"
+
+[urgency_low]
+background = "#222222"
+foreground = "#888888"
+timeout = 5
+
+[urgency_normal]
+background = "#222222"
+foreground = "#888888"
+timeout = 5
+
+[urgency_critical]
+background = "#222222"
+foreground = "#888888"
+timeout = 5
+
+; vim:ft=dosini

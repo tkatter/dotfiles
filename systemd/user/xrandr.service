@@ -1,0 +1,11 @@
+[Unit]
+Description=Set display layout for dual monitors and wallpaper with xrandr and feh
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=%h/.config/i3/dual_monitor.sh
+Type=oneshot
+
+[Install]
+WantedBy=graphical-session.target
