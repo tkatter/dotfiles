@@ -19,7 +19,9 @@ exec --no-startup-id dex --autostart --environment i3
 
 # Start light-locker to manage locking sessions on sleep
 # and `loginctl lock-session` with lightDM as the DM
-exec_always --no-startup-id light-locker
+# exec_always --no-startup-id light-locker
+# Use my locker
+exec_always --no-startup-id xss-lock --transfer-sleep-lock -- /usr/local/bin/my-locker
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
