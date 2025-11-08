@@ -29,7 +29,7 @@ export FZF_CTRL_R_OPTS="--style minimal \
 
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-fzf_dir="$HOME/.local/bin/fzf"
+fzf_dir="$XDG_CONFIG_HOME/fzf"
 
 source "${fzf_dir}/fzf-select-paths.sh"
 source "${fzf_dir}/fuzzy-edit.sh"
