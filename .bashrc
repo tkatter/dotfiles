@@ -29,10 +29,6 @@ if [ -d "$LOCAL_BIN" ]; then
   esac
 fi
 
-## Bash completion (FreeBSD)
-[[ $PS1 && -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
-  source /usr/local/share/bash-completion/bash_completion.sh
-
 ## History sync between shells
 PROMPT_COMMAND='history -a; history -n'
 
@@ -60,7 +56,6 @@ shopt -s checkwinsize
 ## If set, the pattern "**" used in a pathname expansion context will
 ## match all files and zero or more directories and subdirectories.
 shopt -s globstar
-
 
 ## Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -142,6 +137,8 @@ fi
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
+  elif [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion.sh ]]; then
+    source /usr/local/share/bash-completion/bash_completion.sh
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
