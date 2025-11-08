@@ -15,4 +15,12 @@ fman() {
 }
 
 # Get the colors in the opened man page itself
-export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
+if [[ $(uname -s) == "FreeBSD" ]]; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
+else
+  if command -v "batcat" &>/dev/null; then
+    export MANPAGER="sh -c 'batcat -l man --style plain --paging always'"
+  elif command -v "bat" &>/dev/null; then
+    export MANPAGER="sh -c 'bat -l man --style plain --paging always'"
+  fi
+fi
