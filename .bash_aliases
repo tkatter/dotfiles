@@ -6,6 +6,8 @@ alias l='ls -1'
 # batcat
 if command -v "batcat" &>/dev/null; then
   alias cat='bat'
+elif command -v "bat" &>/dev/null; then
+  alias cat='bat'
 fi
 
 # Directory

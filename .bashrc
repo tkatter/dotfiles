@@ -14,6 +14,8 @@ if command -v "nvim" &>/dev/null; then
   export EDITOR="$(command -v nvim)"
 elif command -v "vim" &>/dev/null; then
   export EDITOR="$(command -v vim)"
+elif command -v "vi" &>/dev/null; then
+  export EDITOR="$(command -v vi)"
 else
   export EDITOR="nano" # last resort
 fi
@@ -26,6 +28,13 @@ if [ -d "$LOCAL_BIN" ]; then
   *) export PATH="$LOCAL_BIN:$PATH" ;;
   esac
 fi
+
+## Bash completion (FreeBSD)
+[[ $PS1 && -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
+  source /usr/local/share/bash-completion/bash_completion.sh
+
+## History sync between shells
+PROMPT_COMMAND='history -a; history -n'
 
 ## If not running interactively, don't do anything
 case $- in
@@ -51,6 +60,7 @@ shopt -s checkwinsize
 ## If set, the pattern "**" used in a pathname expansion context will
 ## match all files and zero or more directories and subdirectories.
 shopt -s globstar
+
 
 ## Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -101,9 +111,17 @@ esac
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
-  alias grep='grep --color=auto'
+  # alias grep='grep --color=auto'
+  if command -v "rg" &>/dev/null; then
+    alias grep='rg'
+  fi
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
+else
+  alias ls='ls -G'
+  if command -v "rg" &>/dev/null; then
+    alias grep='rg'
+  fi
 fi
 
 ## colored GCC warnings and errors
@@ -138,6 +156,7 @@ fi
 ## Fzf - fuzzy finder (nvim and yazi)
 if command -v "fzf" &>/dev/null; then
   eval "$(fzf --bash)"
+  source "$XDG_CONFIG_HOME/fzf/fzf-lib.sh"
 fi
 
 ## Cargo - rust
