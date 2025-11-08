@@ -38,6 +38,20 @@ case $- in
 *) return ;;
 esac
 
+## ssh-agent logic
+## Need because of i3 as DE, not needed if using Cinnamon or such
+agent_env="$HOME/.ssh/agent-env"
+## Ensure agent-env exists
+[ -f "$agent_env" ] || ssh-agent -s >"$agent_env"
+
+## Load it, then test if the agent is alive
+. "$agent_env" &>/dev/null || { ssh-agent -s >"$agent_env" && . "$agent_env" &>/dev/null; }
+
+if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null; then
+  ssh-agent -s >"$agent_env"
+  . "$agent_env" &>/dev/null
+fi
+
 ## Don't put duplicate lines or lines starting with space in the history.
 ## See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -106,16 +120,21 @@ esac
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
   alias ls='ls --color=auto'
-  # alias grep='grep --color=auto'
+  alias diff='diff --color'
   if command -v "rg" &>/dev/null; then
     alias grep='rg'
+  else
+    alias grep='grep --color=auto'
   fi
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
 else
-  alias ls='ls -G'
+  alias ls='ls --color=auto'
+  alias diff='diff --color'
   if command -v "rg" &>/dev/null; then
     alias grep='rg'
+  else
+    alias grep='grep --color=auto'
   fi
 fi
 
