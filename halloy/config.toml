@@ -1,0 +1,48 @@
+# Halloy config.
+#
+# For a complete list of available options,
+# please visit https://halloy.chat/configuration/
+
+theme = "catppuccin"
+
+[servers.liberachat]
+nickname = "thermos"
+alt_nicks = ["th3rm0s"]
+username = "thermos"
+server = "irc.libera.chat"
+port = 6697
+use_tls = true
+channels = ["#bsdcafe", "#freebsd", "#freebsd-soc", "##rust", "##rust-offtopic", "#zig"]
+sasl.plain = { username = "thermos", password = "aRb17oX" }
+
+# [servers.local]
+# nickname = "boss"
+# server = "192.168.88.17"
+# port = 6667
+# use_tls = false
+# channels = ["#Images", "#Lobby"]
+
+# [actions.buffer]
+# click_channel_name = "replace-pane"
+
+[actions.sidebar]
+buffer = "replace-pane"
+
+[buffer]
+text_input = { auto_format = "markdown" }
+url = { prompt_before_open = false }
+server_messages.join.smart = 900
+server_messages.part.smart = 900
+server_messages.quit.smart = 900
+server_messages.change_nick.smart = 900
+
+[notifications]
+highlight = { sound = "drop", show_toast = true }
+monitored_online = { sound = "zone", show_toast = true }
+direct_message = { sound = "zone", show_toast = true }
+
+[platform_specific]
+linux.decorations = false
+
+[sidebar]
+unread_indicator = { title = true, highlight_icon = "speaker" }

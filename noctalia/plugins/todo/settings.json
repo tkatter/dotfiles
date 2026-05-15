@@ -1,0 +1,34 @@
+{
+  "todos": [
+    {
+      "id": 1778207511843,
+      "text": "School",
+      "completed": false,
+      "createdAt": "2026-05-08T02:31:51.843Z",
+      "pageId": 0,
+      "priority": "medium",
+      "details": ""
+    }
+  ],
+  "pages": [
+    {
+      "id": 0,
+      "name": "General"
+    }
+  ],
+  "current_page_id": 0,
+  "count": 1,
+  "completedCount": 0,
+  "showCompleted": true,
+  "showBackground": true,
+  "isExpanded": false,
+  "useCustomColors": false,
+  "priorityColors": {
+    "high": "#f38ba8",
+    "medium": "#cba6f7",
+    "low": "#a3b4eb"
+  },
+  "exportPath": "~/Documents",
+  "exportFormat": "markdown",
+  "exportEmptySections": false
+}

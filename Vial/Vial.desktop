@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Vial
+Exec=/bin/sh -c '/home/$USER/.local/share/AppImage/Vial-v0.7.5-x86_64.AppImage &'
+Icon=/usr/share/icons/hicolor/256x256/apps/vial.png
+Type=Application
+Terminal=false
+Keywords=Keyboard;Editor;Settings;

@@ -1,0 +1,19 @@
+{
+  "id": "repos",
+  "name": "Repo launcher",
+  "version": "1.0.0",
+  "minNoctaliaVersion": "3.6.0",
+  "author": "Thomas Katter",
+  "license": "MIT",
+  "repository": "https://git.tksnetwork.com/tkatter/dotfiles",
+  "description": "A repo directory browser/finder plugin for the launcher",
+  "entryPoints": {
+    "launcherProvider": "LauncherProvider.qml"
+  },
+  "dependencies": {
+    "plugins": []
+  },
+  "metadata": {
+    "defaultSettings": {}
+  }
+}

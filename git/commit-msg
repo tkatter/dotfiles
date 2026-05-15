@@ -1,0 +1,12 @@
+#!/bin/sh
+# commit-msg hook to capitalize first letter after colon in conventional commits
+
+MSG_FILE="$1"
+MSG=$(cat "$MSG_FILE")
+
+# Regex breakdown:
+#   ^([^:]+: )   → capture part before colon+space (type + optional scope)
+#   (.)          → capture first character of subject
+#   (.*)         → rest of the subject line
+#
+sed -E '1s/^([^:]+: )([a-z])(.*)$/\1\u\2\3/' "$MSG_FILE" >"$MSG_FILE.tmp" && mv "$MSG_FILE.tmp" "$MSG_FILE"

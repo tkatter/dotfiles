@@ -1,0 +1,10 @@
+font-family = Cascadia Code
+theme = noctalia
+title = ""
+window-decoration = none
+window-show-tab-bar = auto
+copy-on-select = clipboard
+right-click-action = paste
+right-click-action = context-menu
+clipboard-read = allow
+clipboard-trim-trailing-spaces = true

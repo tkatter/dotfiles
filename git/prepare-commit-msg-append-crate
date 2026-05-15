@@ -1,0 +1,43 @@
+#!/bin/bash
+#
+# Git prepare-commit-msg hook
+# Appends "Crate: <CRATE_NAME>" to the commit message footer
+# if changes were made ONLY in sericom OR sericom-core.
+#
+
+MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+# Get staged files (relative paths)
+STAGED=$(git diff --cached --name-only)
+
+# Flags
+HAS_SERICOM=0
+HAS_SERICOM_CORE=0
+
+# Check directories
+for f in $STAGED; do
+  if [[ $f == sericom/* ]]; then
+    HAS_SERICOM=1
+  fi
+  if [[ $f == sericom-core/* ]]; then
+    HAS_SERICOM_CORE=1
+  fi
+done
+
+# If both dirs touched → do nothing
+if [[ $HAS_SERICOM -eq 1 && $HAS_SERICOM_CORE -eq 1 ]]; then
+  exit 0
+fi
+
+# If only one dir touched → append footer
+if [[ $HAS_SERICOM -eq 1 && $HAS_SERICOM_CORE -eq 0 ]]; then
+  echo -e "\n(sericom)" >>"$MSG_FILE"
+fi
+
+if [[ $HAS_SERICOM -eq 0 && $HAS_SERICOM_CORE -eq 1 ]]; then
+  echo -e "\n(sericom-core)" >>"$MSG_FILE"
+fi
+
+exit 0

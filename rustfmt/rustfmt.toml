@@ -1,0 +1,16 @@
+edition = "2024"
+
+imports_granularity = "item"
+group_imports = "StdExternalCrate"
+
+single_line_let_else_max_width = 80
+fn_single_line = true
+fn_call_width = 70
+struct_lit_width = 30
+
+format_strings = true
+max_width = 80
+
+use_field_init_shorthand = true
+struct_field_align_threshold = 20
+enum_discrim_align_threshold = 20

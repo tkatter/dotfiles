@@ -1,0 +1,10 @@
+[Unit]
+Description=Start niri compositor
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/niri-session
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,36 @@
+[user]
+  name = Thomas Katter
+  email = tjkatter@gmail.com
+  signingkey = ~/.ssh/id_ed25519_gitsign.pub
+[alias]
+  last = log -1 HEAD
+  oneline = log --pretty=oneline
+  st = status
+  co = checkout
+  ci = commit
+  br = branch
+  a = add
+  sw = switch
+  d = diff
+  df = diff
+[init]
+  defaultBranch = main
+[commit]
+  gpgsign = true
+  template = ~/.config/git/gitmessage.txt
+[url "https://github.com/"]
+  insteadOf = gh:
+[url "git@git.tksnetwork.com:"]
+  insteadOf = tk:
+[tag]
+  gpgsign = true
+[push]
+  autosetupremote = true
+[gpg]
+  format = ssh
+[gpg "ssh"]
+  allowedSignersFile = ~/.ssh/allowed_signers
+
+; Run this to generate allowedSignersFile
+; echo "$(git config --get user.email) namespaces=\"git\" \
+;   $(cat ~/.ssh/id_ed25519_gitsign.pub)" >> ~/.ssh/allowed_signers
