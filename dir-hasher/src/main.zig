@@ -70,10 +70,7 @@ pub fn main(init: std.process.Init) !void {
             std.debug.print(usage, .{});
             std.process.exit(1);
         } else if (std.mem.eql(u8, arg, "-i") or std.mem.eql(u8, arg, "--ignore")) {
-            if (args.next()) |ignore| {
-                try ignore_segments.addSegment(ignore);
-                flags.ignore = true;
-            }
+            if (args.next()) |ignore| try ignore_segments.addSegment(ignore);
         } else if (std.mem.eql(u8, arg, "-I") or std.mem.eql(u8, arg, "--ignore-file")) {
             if (args.next()) |ignore_file| {
                 try ignore_segments.fromFile(ignore_file);

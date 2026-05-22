@@ -62,4 +62,14 @@ add-date path mode='a':
   esac
 
 hash:
-  ./dir-hasher/zig-out/bin/dir_hasher -d ~/.config | b3sum | awk '{print $1}'
+  ./dir-hasher/zig-out/bin/dir_hasher -d ~/.config -i .current-hash | b3sum | awk '{print $1}'
+
+check-hash:
+  #!/usr/bin/env bash
+  current_hash="$(< .current-hash)"
+  this_hash="$(just hash 2>/dev/null)"
+  if [[ "$current_hash" != "$this_hash" ]]; then
+    echo "hashes do not match... saving new hash" >&2
+    echo "$this_hash" > .current-hash
+    exit 1
+  fi
