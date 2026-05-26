@@ -21,6 +21,6 @@ else
   if command -v "batcat" &>/dev/null; then
     export MANPAGER="sh -c 'batcat -l man --style plain --paging always'"
   elif command -v "bat" &>/dev/null; then
-    export MANPAGER="sh -c 'bat -l man --style plain --paging always'"
+    export MANPAGER="bat -l man --style plain"
   fi
 fi
