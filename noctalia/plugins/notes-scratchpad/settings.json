@@ -1,11 +1,11 @@
 {
-  "scratchpadContent": "type: 0\nlen: 1a (26)\nhandle: 0, 0\n\nb.1 = 1\nb.2 = 2\nb.3 = 0\nb.4 = f0 (240)\nb.5 = 3\nb.6 = ff (255)\nb.7 = 80 (128)\nb.8 = 98 (152)\nb.9 = fb (251)\nb.10 = 7f (127)\nb.11 = 1\nb.12 = 0\nb.13 = 0\nb.14 = 0",
+  "scratchpadContent": "ESC [ 63 ; 126 R\n63 / 2\n30 - 12",
   "panelWidth": 600,
   "panelHeight": 400,
   "fontSize": 14,
-  "cursorPosition": 20,
+  "cursorPosition": 31,
   "scrollPositionX": 0,
-  "scrollPositionY": 0,
+  "scrollPositionY": 0.5555555555555556,
   "filePath": "",
   "useMonospace": true
 }

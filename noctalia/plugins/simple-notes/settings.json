@@ -5,14 +5,8 @@
       "title": "Resources",
       "content": "Creating desktop files:\n  https://dev.to/sujit-shrc/install-appimages-on-arch-based-linux-lm2\n\nNASA wallpapers\n\thttps://svs.gsfc.nasa.gov/",
       "modifiedAt": "2026-05-08T07:20:40.392Z"
-    },
-    {
-      "id": "1778460958268",
-      "title": "t0",
-      "content": "type: 0\nlen: 26u8\nhandle: 0u16\n\n",
-      "modifiedAt": "2026-05-11T00:55:58.268Z"
     }
   ],
   "showCountInBar": true,
-  "count": 2
+  "count": 1
 }
